@@ -20,6 +20,14 @@ import bert_score
 
 import datasets
 
+import logging
+
+logger = logging.getLogger()
+ch = logging.StreamHandler()
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+ch.setFormatter(formatter)
+logger.addHandler(ch)
+
 
 @contextmanager
 def filter_logging_context():
