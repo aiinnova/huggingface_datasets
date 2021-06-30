@@ -29,19 +29,19 @@ ch.setFormatter(formatter)
 logger.addHandler(ch)
 
 
-@contextmanager
-def filter_logging_context():
-    def filter(record):
-        if "This IS expected if you are initializing" in record.msg:
-            return False
-        return True
-
-    logger = datasets.utils.logging.get_logger("transformers.modeling_utils")
-    logger.addFilter(filter)
-    try:
-        yield
-    finally:
-        logger.removeFilter(filter)
+# @contextmanager
+# def filter_logging_context():
+#     def filter(record):
+#         if "This IS expected if you are initializing" in record.msg:
+#             return False
+#         return True
+#
+#     logger = datasets.utils.logging.get_logger("transformers.modeling_utils")
+#     logger.addFilter(filter)
+#     try:
+#         yield
+#     finally:
+#         logger.removeFilter(filter)
 
 
 _CITATION = """\
@@ -166,13 +166,13 @@ class BERTScore(datasets.Metric):
                 baseline_path=baseline_path,
             )
 
-        with filter_logging_context():
-            (P, R, F) = self.cached_bertscorer.score(
-                cands=predictions,
-                refs=references,
-                verbose=verbose,
-                batch_size=batch_size,
-            )
+        # with filter_logging_context():
+        (P, R, F) = self.cached_bertscorer.score(
+            cands=predictions,
+            refs=references,
+            verbose=verbose,
+            batch_size=batch_size,
+        )
         output_dict = {
             "precision": P.tolist(),
             "recall": R.tolist(),
