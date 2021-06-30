@@ -22,7 +22,7 @@ import datasets
 
 import logging
 
-logger = logging.getLogger()
+logger = logging.getLogger("transformers")
 ch = logging.StreamHandler()
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 ch.setFormatter(formatter)
